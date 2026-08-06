@@ -1,17 +1,69 @@
-*{
+* {
     margin: 0;
-    padding:0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.cabecalho{
+body {
+    font-family: sans-serif;
+}
+
+.cabecalho {
     padding: 15px 25px;
+    background-color: #f4f4f4;
 }
 
-.cartao{
-    width: 260px;
-    height: 200px;
+/* Container principal do cartão com efeito 3D */
+.cartao {
+    width: 280px;
+    height: 350px;
+    perspective: 1000px; /* Dá a sensação de profundidade 3D */
+    margin: 20px auto;
 }
 
-.caratao-fernte, .cartao-verso {
+/* Elemento interno que realmente gira */
+.cartao-interno {
+    position: relative;
     width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+/* Efeito ao passar o mouse: gira o cartão */
+.cartao:hover .cartao-interno {
+    transform: rotateY(180deg);
+}
+
+/* Estilo para a frente e o verso */
+.cartao-frente, .cartao-verso {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Esconde o lado oposto ao virar */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    text-align: center;
+    background-color: #fff;
+}
+
+/* O verso começa já girado 180 graus */
+.cartao-verso {
+    transform: rotateY(180deg);
+    background-color: #f9f9f9;
+}
+
+/* Ajuste das imagens para não deformarem */
+.cartao-frente img, 
+.cartao-verso img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
 }
